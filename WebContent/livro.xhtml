@@ -34,9 +34,6 @@
 				<h:inputText id="dataLancamento" value="#{livroBean.livro.dataLancamento.time}">
 					<f:convertDateTime pattern="dd/MM/yyyy HH:mm" timeZone="America/Sao_Paulo" />
 				</h:inputText>
-				<h:commandButton value="Gravar" action="#{livroBean.gravar}">
-					<f:ajax execute="@form" render="@form :formTabelaLivros:tabelaLivros"/>
-				</h:commandButton>
 				
 				
 			</h:panelGrid>
@@ -64,6 +61,9 @@
 				</h:column>			
 			</h:dataTable>
 		</fieldset>
+		<h:commandButton value="Gravar" action="#{livroBean.gravar}">
+			<f:ajax execute="@form" render="@form :formTabelaLivros:tabelaLivros"/>
+		</h:commandButton>
 		
 	</h:form>
 	
@@ -88,6 +88,10 @@
 			<h:outputText value="#{livro.dataLancamento.time}">
 				<f:convertDateTime pattern="dd/MM/yyyy HH:mm" timeZone="America/Sao_Paulo"/>
 			</h:outputText>
+		</h:column>
+		<h:column>
+			<f:facet name="header">Alterar</f:facet>
+			<h:commandLink value="altera" action="#{livroBean.carregar(livro)}"/>
 		</h:column>
 		<h:column>
 			<f:facet name="header">Remover</f:facet>
