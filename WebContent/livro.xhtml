@@ -4,9 +4,13 @@
 		xmlns:h="http://java.sun.com/jsf/html"
 		xmlns:f="http://java.sun.com/jsf/core">
 
+<h:head>
+
+</h:head>
+
 <h:body>
 	<h:form>
-	<h:messages/>
+	<h:messages id="messages"/>
 		<fieldset>
 			<legend>Dados do Livro</legend>
 			<h:panelGrid>
@@ -14,6 +18,7 @@
 				<h:inputText id="titulo" value="#{livroBean.livro.titulo}"  required="true" requiredMessage="título obrigatório"
 					validatorMessage="título não pode ser superior a 40">
 					<f:validateLength maximum="40"/>
+					<f:ajax event="blur" render="messages" />
 					</h:inputText>
 				<h:outputLabel value="ISBM" for="isbn" />
 				<h:inputText id="isbn" value="#{livroBean.livro.isbn}" validator="#{livroBean.comecaComDigitoUm}"/>
@@ -26,21 +31,25 @@
 				<h:inputText id="dataLancamento" value="#{livroBean.livro.dataLancamento.time}">
 					<f:convertDateTime pattern="dd/MM/yyyy HH:mm" timeZone="America/Sao_Paulo" />
 				</h:inputText>
-				<h:commandButton value="Gravar" action="#{livroBean.gravar}"/>
+				<h:commandButton value="Gravar" action="#{livroBean.gravar}">
+					<f:ajax execute="@form" render="@form :tabelaLivros"/>
+				</h:commandButton>
 			</h:panelGrid>
 		</fieldset>
 		
 		<fieldset>
 			<legend>Dados do Autor</legend>
 			<h:outputLabel value="Selecione o Autor:" for="autor" />
-			<h:selectOneMenu value="#{livroBean.autorId}">
+			<h:selectOneMenu value="#{livroBean.autorId}" id="autor">
 				<f:selectItems value="#{livroBean.autores}" var="autor" 
 								itemLabel="#{autor.nome}" itemValue="#{autor.id}">									
 				</f:selectItems>
 			</h:selectOneMenu>
-			<h:commandButton value="Gravar Autor" action="#{livroBean.gravarAutor}"/>
+			<h:commandButton value="Gravar Autor" action="#{livroBean.gravarAutor}">
+				<f:ajax execute="autor" render="tabelaAutores" />
+			</h:commandButton>
 			
-			<h:dataTable value="#{livroBean.autoresDoLivro}" var="autor">
+			<h:dataTable value="#{livroBean.autoresDoLivro}" var="autor" id="tabelaAutores">
 				<h:column>
 					<h:outputText value="#{autor.nome}"/>
 				</h:column>			
@@ -49,7 +58,7 @@
 		
 	</h:form>
 	
-	<h:dataTable value="#{livroBean.livros}" var="livro">
+	<h:dataTable value="#{livroBean.livros}" var="livro" id="tabelaLivros">
 		<h:column>
 			<f:facet name="header">Titulo</f:facet>
 			<h:outputText value="#{livro.titulo}" />
@@ -60,7 +69,9 @@
 		</h:column>
 		<h:column>
 			<f:facet name="header">Preço</f:facet>
-			<h:outputText value="#{livro.preco}" />
+			<h:outputText value="#{livro.preco}">
+				<f:convertNumber type="currency" pattern="R$ #0.00" currencySymbol="R$" locale="pt_BR" />
+			</h:outputText>
 		</h:column>
 		<h:column>
 			<f:facet name="header">Data</f:facet>
