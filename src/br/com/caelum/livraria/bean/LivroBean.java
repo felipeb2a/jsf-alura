@@ -63,6 +63,11 @@ public class LivroBean {
 		this.livro = new Livro();
 	}
 	
+	public void remover(Livro livro) {
+		System.out.println("Removendo livro");
+		new DAO<Livro>(Livro.class).remove(livro);
+	}
+	
 	public RedirectView formAutor() {
 		System.out.println("Chamando o formulario do Autor");
 		return new RedirectView("autor");
