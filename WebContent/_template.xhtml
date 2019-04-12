@@ -8,6 +8,8 @@
 	<h:body>
 		<div id="cabecalho">
 			<h:graphicImage library="img" name="logo.png" />
+			<br />
+			<h:outputText value="#{sessionScope['usuarioLogado'].email}" />
 			<h1><ui:insert name="titulo"></ui:insert></h1>
 		</div>
 		
