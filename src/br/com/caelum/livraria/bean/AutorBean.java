@@ -26,7 +26,7 @@ public class AutorBean {
 		this.autorId = autorId;
 	}
 	
-	public void carregarAutorPeloId() {
+	public void carregarAutorPelaId() {
 		this.autor = new DAO<Autor>(Autor.class).buscaPorId(autorId);
 	}
 
