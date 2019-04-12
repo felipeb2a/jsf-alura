@@ -74,7 +74,7 @@ public class LivroBean {
 	}
 	
 	public void removerAutorDoLivro(Autor autor) {
-		System.out.println("Removendo autot");
+		System.out.println("Removendo autor");
 		this.livro.removeAutor(autor);
 	}
 	
