@@ -18,16 +18,29 @@ public class LoginBean {
 		return usuario;
 	}
 
-	public String efetuarLogin() {
+	public RedirectView efetuarLogin() {
 		System.out.println("Fazendo login do usuario" + this.usuario.getEmail());
 		boolean existe = new UsuarioDao().existe(this.usuario);
 		if(existe ) {
 			FacesContext context = FacesContext.getCurrentInstance();
 			context.getExternalContext().getSessionMap().put("usuarioLogado", usuario);
-			return "livro?faces-redirect-true";			
+			
+			return new RedirectView("livro");
+//			return "livro?faces-redirect-true";			
 		}
 		
 		return null;
+		
+	}
+	
+	public RedirectView deslogar() {
+		
+		System.out.println("Deslogando usuario");
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.getExternalContext().getSessionMap().remove("usuarioLogado");		
+		
+		return new RedirectView("login");
+//		return "login?faces-redirect-true";
 		
 	}
 
