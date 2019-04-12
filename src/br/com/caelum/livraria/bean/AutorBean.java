@@ -16,10 +16,24 @@ public class AutorBean {
 
 	private Autor autor = new Autor();
 
-	public List<Autor> getAutores(){
-		return new DAO<>(Autor.class).listaTodos();
+	private Integer autorId;
+
+	public Integer getAutorId() {
+		return autorId;
+	}
+
+	public void setAutorId(Integer autorId) {
+		this.autorId = autorId;
 	}
 	
+	public void carregarAutorPeloId() {
+		this.autor = new DAO<Autor>(Autor.class).buscaPorId(autorId);
+	}
+
+	public List<Autor> getAutores() {
+		return new DAO<>(Autor.class).listaTodos();
+	}
+
 	public Autor getAutor() {
 		return autor;
 	}
@@ -27,25 +41,24 @@ public class AutorBean {
 	public RedirectView gravar() {
 		System.out.println("Gravando autor " + this.autor.getNome());
 
-		if(this.autor.getId() == null) {
-			new DAO<Autor>(Autor.class).adiciona(this.autor);			
+		if (this.autor.getId() == null) {
+			new DAO<Autor>(Autor.class).adiciona(this.autor);
+		} else {
+			new DAO<Autor>(Autor.class).atualiza(this.autor);
 		}
-		else {
-			new DAO<Autor>(Autor.class).atualiza(this.autor);		
-		}
-		
+
 		this.autor = new Autor();
-		
+
 		return new RedirectView("livro");
 	}
-	
+
 	public void remover(Autor autor) {
 		System.out.println("Removendo autor");
 		new DAO<Autor>(Autor.class).remove(autor);
 	}
-	
+
 	public void carregar(Autor autor) {
 		System.out.println("Carregar autor");
-		this.autor = autor;		
+		this.autor = autor;
 	}
 }
