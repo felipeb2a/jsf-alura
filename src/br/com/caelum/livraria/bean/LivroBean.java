@@ -13,6 +13,7 @@ import javax.faces.validator.ValidatorException;
 import br.com.caelum.livraria.dao.DAO;
 import br.com.caelum.livraria.modelo.Autor;
 import br.com.caelum.livraria.modelo.Livro;
+import br.com.caelum.livraria.modelo.LivroDataModel;
 import br.com.caelum.livraria.util.RedirectView;
 
 @ManagedBean
@@ -26,6 +27,12 @@ public class LivroBean {
 	private Integer livroId;
 
 	private List<Livro> livros;
+	
+	private LivroDataModel livroDataModel = new LivroDataModel();
+	
+	public LivroDataModel getLivroDataModel() {
+		return livroDataModel;
+	}
 
 	public Integer getAutorId() {
 		return autorId;
