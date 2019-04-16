@@ -62,16 +62,21 @@
 								update="@all"/>
 			</p:panelGrid>
 			
-			<p:dataTable value="#{livroBean.autoresDoLivro}" var="autor" id="tabelaAutores" 
-							emptyMessage="Nenhum autor">
-				<p:column>
-					<h:outputText value="#{autor.nome}"/>
-				</p:column>			
-				<p:column>
-					<p:commandLink value="X" action="#{livroBean.removerAutorDoLivro(autor)}" 
+			<p:dataList value="#{livroBean.autoresDoLivro}" var="autor" id="tabelaAutores" 
+							emptyMessage="Nenhum autor" type="definition">
+							
+				<f:facet name="header">
+					Autores
+				</f:facet>									
+				
+				<p:commandLink styleClass="ui-icon ui-icon-trash" 
+									style="float:left;margin-right:10px"
+									action="#{livroBean.removerAutorDoLivro(autor)}" 
 									update="tabelaAutores" process="@this"/>
-				</p:column>			
-			</p:dataTable>
+										
+				#{autor.nome}		
+				
+			</p:dataList>
 		</p:fieldset>
 		<p:commandButton value="Gravar" action="#{livroBean.gravar}" process="@form" update="@form :formTabelaLivros:tabelaLivros">
 		</p:commandButton>
