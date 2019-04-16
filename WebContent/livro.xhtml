@@ -84,36 +84,31 @@
 	</h:form>
 	
 	<h:form id="formTabelaLivros">
-	<h:dataTable value="#{livroBean.livros}" var="livro" id="tabelaLivros">
-		<h:column>
-			<f:facet name="header">Titulo</f:facet>
+	<p:dataTable value="#{livroBean.livros}" var="livro" id="tabelaLivros">
+		<f:facet name="header">Livros</f:facet>
+		<p:column headerText="Titulo" sortBy="#{livro.titulo}">
 			<h:outputText value="#{livro.titulo}" />
-		</h:column>
-		<h:column>
-			<f:facet name="header">ISBN</f:facet>
+		</p:column>
+		<p:column headerText="ISBN" sortBy="#{livro.isbn}">
 			<h:outputText value="#{livro.isbn}" />
-		</h:column>
-		<h:column>
-			<f:facet name="header">Preço</f:facet>
+		</p:column>
+		<p:column headerText="Preço" sortBy="#{livro.preco}">
 			<h:outputText value="#{livro.preco}">
 				<f:convertNumber type="currency" pattern="R$ #0.00" currencySymbol="R$" locale="pt_BR" />
 			</h:outputText>
-		</h:column>
-		<h:column>
-			<f:facet name="header">Data</f:facet>
+		</p:column>
+		<p:column headerText="Data" sortBy="#{livro.dataLancamento.time}">
 			<h:outputText value="#{livro.dataLancamento.time}">
 				<f:convertDateTime pattern="dd/MM/yyyy HH:mm" timeZone="America/Sao_Paulo"/>
 			</h:outputText>
-		</h:column>
-		<h:column>
-			<f:facet name="header">Alterar</f:facet>
+		</p:column>
+		<p:column headerText="Alterar">
 			<h:commandLink value="altera" action="#{livroBean.carregar(livro)}"/>
-		</h:column>
-		<h:column>
-			<f:facet name="header">Remover</f:facet>
+		</p:column>
+		<p:column headerText="Remover">
 			<h:commandLink value="remove" action="#{livroBean.remover(livro)}"/>
-		</h:column>
-	</h:dataTable>
+		</p:column>
+	</p:dataTable>
 	</h:form>
 	</ui:define>
 	
