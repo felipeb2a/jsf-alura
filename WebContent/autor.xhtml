@@ -51,14 +51,12 @@
 					Autores
 				</f:facet>
 				
-				<p:commandLink styleClass="ui-icon ui-icon-pencil" style="float:left;margin-right:10px"
-					update=":autor">
-					<f:setPropertyActionListener value="#{autor}" target="#{autorBean.autor}" />
-				</p:commandLink>
-				
-				<p:commandLink styleClass="ui-icon ui-icon-trash" 
-					style="float:left;margin-right:10px" 
-					action="#{autorBean.remover(autor)}" update="@form"/>
+				<p:commandButton icon="fa fa-fw fa-edit" update=":autor">
+						<f:setPropertyActionListener value="#{autor}" target="#{autorBean.autor}" />
+				</p:commandButton>
+					
+				<p:commandButton icon="fa fa-fw fa-remove" action="#{autorBean.remover(autor)}" 
+						update="@form" />
 				
 				#{autor.nome} - #{autor.email}
 			</p:dataList>		

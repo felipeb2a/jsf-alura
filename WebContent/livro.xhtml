@@ -73,11 +73,10 @@
 				<f:facet name="header">
 					Autores
 				</f:facet>									
-				
-				<p:commandLink styleClass="ui-icon ui-icon-trash" 
-									style="float:left;margin-right:10px"
+													
+				<p:commandButton icon="fa fa-fw fa-remove" 
 									action="#{livroBean.removerAutorDoLivro(autor)}" 
-									update="tabelaAutores" process="@this"/>
+									update="tabelaAutores" process="@this" />
 										
 				#{autor.nome}		
 				
