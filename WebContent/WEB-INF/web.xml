@@ -18,10 +18,10 @@
     <param-value>
         true
     </param-value>
-</context-param>
-<!-- habilitar icones do primefaces -->
-<context-param>
-	<param-name>primefaces.FONT_AMESOME</param-name>
-	<param-value>true</param-value>
-</context-param>
+  </context-param>
+  <!-- habilitar icones do primefaces -->
+  <context-param>
+  	<param-name>primefaces.FONT_AWESOME</param-name>
+  	<param-value>true</param-value>
+  </context-param>
 </web-app>
