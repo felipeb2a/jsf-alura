@@ -18,31 +18,31 @@
 	</ui:define>
 	<ui:define name="conteudo">
 	<h:form>	
-	<h:messages id="messages"/>
+	<p:messages id="messages"/>
 		<p:fieldset legend="Dados do Livro">
-			<h:panelGrid>
+			<p:panelGrid columns="2">
 				<p:outputLabel value="Título:" for="titulo" />
-				<p:inputText id="titulo" value="#{livroBean.livro.titulo}"  required="true" requiredMessage="título obrigatório"
+				<p:inputText id="titulo" value="#{livroBean.livro.titulo}"  
+					required="true" requiredMessage="título obrigatório"
 					validatorMessage="título não pode ser superior a 40">
 					<f:validateLength maximum="40"/>
 					<f:ajax event="blur" render="messages" />
 				</p:inputText>
 				<p:outputLabel value="ISBN" for="isbn" />
-				<p:inputText id="isbn" value="#{livroBean.livro.isbn}" validator="#{livroBean.comecaComDigitoUm}">
+				<p:inputMask id="isbn" value="#{livroBean.livro.isbn}" 
+					validator="#{livroBean.comecaComDigitoUm}" mask="999-9-99-999999-9">
 					<f:ajax event="keyup" render="messages"/>
-				</p:inputText>
+				</p:inputMask>
 				<p:outputLabel value="Preço:" for="preco" />
-				<p:inputText id="preco" value="#{livroBean.livro.preco}"
-							validatorMessage="informe o preço entre 1 a 1000.00">
+				<p:inputNumber id="preco" value="#{livroBean.livro.preco}"
+							validatorMessage="informe o preço entre 1 a 1000.00"
+							decimalSeparator="," thousandSeparator=".">
 					<f:validateDoubleRange minimum="1.0" maximum="1000"/>
-				</p:inputText>
+				</p:inputNumber>
 				<p:outputLabel value="Data de Lançamento" for="dataLancamento" />
-				<p:inputText id="dataLancamento" value="#{livroBean.livro.dataLancamento.time}">
-					<f:convertDateTime pattern="dd/MM/yyyy HH:mm" timeZone="America/Sao_Paulo" />
-				</p:inputText>
-				
-				
-			</h:panelGrid>
+				<p:calendar id="dataLancamento" value="#{livroBean.livro.dataLancamento.time}" pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo" />
+								
+			</p:panelGrid>
 		</p:fieldset>
 		
 		<p:fieldset legend="Dados do Autor">
