@@ -1,5 +1,6 @@
 package br.com.caelum.livraria.bean;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -28,6 +29,8 @@ public class LivroBean {
 
 	private List<Livro> livros;
 	
+	private List<String> generos = Arrays.asList("Romance", "Drama", "Ação");
+	
 	private LivroDataModel livroDataModel = new LivroDataModel();
 	
 	public LivroDataModel getLivroDataModel() {
@@ -52,6 +55,10 @@ public class LivroBean {
 
 	public void setLivroId(Integer livroId) {
 		this.livroId = livroId;
+	}
+	
+	public List<String> getGeneros() {
+	    return generos;
 	}
 
 	public List<Livro> getLivros() {
