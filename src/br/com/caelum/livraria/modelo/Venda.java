@@ -12,7 +12,7 @@ public class Venda {
 	@Id @GeneratedValue
 	private Integer id;
 	
-	@ManyToOne(fetch = FetchType.EAGER) 
+	@ManyToOne
 	private Livro livro;	
 	private Integer quantidade;
 	

@@ -131,8 +131,7 @@ public class LivroBean implements Serializable{
 
 	public void carregar(Livro livro) {
 		System.out.println("Carregar livro");
-		this.livro = livro;
-
+		this.livro = this.livroDao.buscaPorId(livro.getId());
 	}
 
 	public RedirectView formAutor() {
