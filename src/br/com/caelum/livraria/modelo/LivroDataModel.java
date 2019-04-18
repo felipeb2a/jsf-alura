@@ -9,13 +9,11 @@ import javax.inject.Inject;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 
-import br.com.caelum.livraria.dao.DAO;
 import br.com.caelum.livraria.dao.LivroDao;
 
 @SuppressWarnings("serial")
 public class LivroDataModel extends LazyDataModel<Livro> implements Serializable{
-	
-	@Inject
+		
 	private LivroDao livroDao;
 		
 	public LivroDataModel() {

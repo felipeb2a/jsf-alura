@@ -18,6 +18,7 @@ import br.com.caelum.livraria.dao.LivroDao;
 import br.com.caelum.livraria.modelo.Autor;
 import br.com.caelum.livraria.modelo.Livro;
 import br.com.caelum.livraria.modelo.LivroDataModel;
+import br.com.caelum.livraria.tx.Transacional;
 import br.com.caelum.livraria.util.RedirectView;
 
 @Named
@@ -42,11 +43,11 @@ public class LivroBean implements Serializable{
 	
 	private List<String> generos = Arrays.asList("Romance", "Drama", "Ação");
 	
-	private LivroDataModel livroDataModel = new LivroDataModel();
+//	private LivroDataModel livroDataModel = new LivroDataModel();
 	
-	public LivroDataModel getLivroDataModel() {
-		return livroDataModel;
-	}
+//	public LivroDataModel getLivroDataModel() {
+//		return livroDataModel;
+//	}
 
 	public Integer getAutorId() {
 		return autorId;
@@ -92,11 +93,12 @@ public class LivroBean implements Serializable{
 		this.livro.adicionaAutor(autor);
 	}
 
+	//begin
+	@Transacional
 	public void gravar() {
 		System.out.println("Gravando livro " + this.livro.getTitulo());
 
 		if (livro.getAutores().isEmpty()) {
-//			throw new RuntimeException("Livro deve ter pelo menos um Autor.");
 			FacesContext.getCurrentInstance().addMessage("autor",
 					new FacesMessage("Livro deve ter pelo menos um Autor"));
 		}
@@ -110,7 +112,9 @@ public class LivroBean implements Serializable{
 
 		this.livro = new Livro();
 	}
+	//commit
 
+	@Transacional
 	public void remover(Livro livro) {
 		System.out.println("Removendo livro");
 		this.livroDao.remove(livro);
